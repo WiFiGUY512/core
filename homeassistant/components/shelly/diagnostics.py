@@ -4,13 +4,7 @@ from typing import Any
 
 from homeassistant.components.bluetooth import async_scanner_by_source
 from homeassistant.components.diagnostics import async_redact_data
-from homeassistant.const import (
-    ATTR_MODEL,
-    ATTR_NAME,
-    ATTR_SW_VERSION,
-    CONF_PASSWORD,
-    CONF_USERNAME,
-)
+from homeassistant.const import ATTR_NAME, CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 
 from .coordinator import ShellyConfigEntry
@@ -35,8 +29,8 @@ async def async_get_config_entry_diagnostics(
         assert block_coordinator
         device_info = {
             ATTR_NAME: block_coordinator.name,
-            ATTR_MODEL: block_coordinator.model,
-            ATTR_SW_VERSION: block_coordinator.sw_version,
+            "model": block_coordinator.model,
+            "sw_version": block_coordinator.sw_version,
         }
         if block_coordinator.device.initialized:
             device_settings = {
@@ -70,8 +64,8 @@ async def async_get_config_entry_diagnostics(
         assert rpc_coordinator
         device_info = {
             ATTR_NAME: rpc_coordinator.name,
-            ATTR_MODEL: rpc_coordinator.model,
-            ATTR_SW_VERSION: rpc_coordinator.sw_version,
+            "model": rpc_coordinator.model,
+            "sw_version": rpc_coordinator.sw_version,
         }
         if rpc_coordinator.device.initialized:
             device_settings = {
