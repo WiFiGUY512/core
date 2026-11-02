@@ -7,7 +7,13 @@ from homeassistant.components.diagnostics import (
     device_entry_as_dict,
     entity_entry_as_dict,
 )
-from homeassistant.const import CONF_PASSWORD, CONF_UNIQUE_ID, CONF_USERNAME
+from homeassistant.const import (
+    ATTR_CONNECTIONS,
+    ATTR_IDENTIFIERS,
+    CONF_PASSWORD,
+    CONF_UNIQUE_ID,
+    CONF_USERNAME,
+)
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 
@@ -15,7 +21,7 @@ from . import AsusWrtConfigEntry
 from .router import get_device_identifier
 
 TO_REDACT = {CONF_PASSWORD, CONF_UNIQUE_ID, CONF_USERNAME}
-TO_REDACT_DEV = {"connections", "identifiers"}
+TO_REDACT_DEV = {ATTR_CONNECTIONS, ATTR_IDENTIFIERS}
 
 
 async def async_get_config_entry_diagnostics(
